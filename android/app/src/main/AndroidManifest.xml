@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mgmg_front">
+    package="to_gather_together">
    <application
-        android:label="mgmg_front"
+        android:label="투개더"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -31,7 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   // void _getUserInfo() async {
   //   try {
   //     User user = await UserApi.instance.me();
@@ -53,66 +52,120 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 60),
-            Text(
-              "반갑습니다, 보호자님!",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10),
-            Text(
-              "몽글몽글을 이용하시려면 로그인이 필요합니다.\n아래에서 로그인 수단을 선택해주세요.",
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(height: 60),
-            Column(
-              children: [
-                // 카카오톡 로그인 버튼
-                // 디자인 변경 필요 : kakao developer 문서 참조
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    // 카카오 로그인 동작 : 카카오 로그인 완료 후 받은 accessToken을 서비스 서버로 전달
-                    signInWithKakao();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFAE100)),
-                  icon: Icon(Icons.message),
-                  label: Text("카카오톡으로 시작하기"),
-                ),
-
-                // 네이버 로그인 버튼
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    // 네이버 로그인 동작 : 네이버 로그인 완료 후 받은 accessToken을 서비스 서버로 전달
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF06BD34)),
-                  icon: Icon(Icons.add),
-                  label: Text("네이버로 시작하기"),
-                ),
-
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5)),
+            SizedBox(
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    "반갑습니다, 보호자님!",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
-                  icon: Icon(Icons.g_translate),
-                  label: Text("Google로 시작하기"),
-                ),
-                Divider(),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("이메일로 회원가입"),
-                ),
-              ],
+                  Text(
+                    "몽글몽글을 이용하시려면 로그인이 필요합니다.\n아래에서 로그인 수단을 선택해주세요.",
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            SizedBox(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // 카카오톡 로그인 버튼
+                  // 디자인 변경 필요 : kakao developer 문서 참조
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            bool login = await signInWithKakao();
+                            if(login == true){
+                              //nextPage
+                            }
+                          },
+                          child: Image.asset(
+                            'assets/images/kakao_login_large_wide.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: ElevatedButton.icon(
+                  //         onPressed: () async {
+                  //           // 카카오 로그인 동작 : 카카오 로그인 완료 후 받은 accessToken을 서비스 서버로 전달
+                  //           signInWithKakao();
+                  //         },
+                  //         style: ElevatedButton.styleFrom(
+                  //             backgroundColor: Color(0xFFFEE500),
+                  //             shape: RoundedRectangleBorder(
+                  //               side: BorderSide.none,
+                  //               borderRadius: BorderRadius.circular(12)
+                  //             )
+                  //           ),
+                  //         icon: Icon(Icons.message),
+                  //         label: Text(
+                  //           "카카오 로그인",
+                  //           style: TextStyle(
+                  //             color: Color.fromRGBO(0, 0, 0, 0.85),
+                  //           ),),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+
+                  // 네이버 로그인 버튼
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            // 네이버 로그인 동작 : 네이버 로그인 완료 후 받은 accessToken을 서비스 서버로 전달
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF06BD34)),
+                          icon: Icon(Icons.add),
+                          label: Text("네이버 로그인"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // 구글 로그인 버튼
+                  // ElevatedButton.icon(
+                  //   onPressed: () {},
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Colors.white,
+                  //     foregroundColor: Colors.black,
+                  //     shape: RoundedRectangleBorder(
+                  //         side: BorderSide(color: Colors.grey),
+                  //         borderRadius: BorderRadius.circular(5)),
+                  //   ),
+                  //   icon: Icon(Icons.g_translate),
+                  //   label: Text("Google로 시작하기"),
+                  // ),
+                  Divider(
+                    thickness: 1.5,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text("이메일로 회원가입"),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 60),
             Column(

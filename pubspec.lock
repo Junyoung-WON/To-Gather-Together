@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  change_app_package_name:
+    dependency: "direct dev"
+    description:
+      name: change_app_package_name
+      sha256: f9ebaf68a4b5a68c581492579bb68273c523ef325fbf9ce2f1b57fb136ad023b
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -353,7 +361,7 @@ packages:
     source: hosted
     version: "4.2.4"
   shared_preferences:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: shared_preferences
       sha256: "858aaa72d8f61637d64e776aca82e1c67e6d9ee07979123c5d17115031c1b13b"

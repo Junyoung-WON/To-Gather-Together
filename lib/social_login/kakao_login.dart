@@ -2,7 +2,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
-void signInWithKakao() async {
+Future<bool> signInWithKakao() async {
   try {
     bool installed = await isKakaoTalkInstalled();
     OAuthToken token = installed
@@ -16,8 +16,10 @@ void signInWithKakao() async {
     );
     print('response status code: ${response.statusCode}');
     print(response.body);
+    return true;
   } catch (error) {
     print(error.toString());
     print('카카오톡 로그인 실패');
+    return false;
   }
 }
