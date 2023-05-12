@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="to_gather_together">
+    package="com.example.to_gather_together">
    <application
         android:label="투개더"
         android:name="${applicationName}"

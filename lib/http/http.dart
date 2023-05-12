@@ -1,5 +1,7 @@
-import 'package:http/http.dart' as http;
 import 'dart:async';
+// import 'dart:convert';
+// import 'dart:io';
+import 'package:http/http.dart' as http;
 
 Future<dynamic> getWeatherReq() async {
   String serviceKey =
@@ -37,8 +39,7 @@ Future<dynamic> getWeatherReq() async {
 Future<dynamic> getAnimalInfoReq(String regNo, String ownerName) async {
   String serviceKey =
       'YA+ukx3XZMaIWy4wjnEJIdCj94eQtJdQIjz4SO95oT1ScO8eyBJVQIxvZZvBf07rQPMIsVeT1knarShG9t0pTA==';
-  var uri = Uri.http(
-      'apis.data.go.kr', '1543061/animalInfoSrvc/animalInfo', {
+  var uri = Uri.http('apis.data.go.kr', '1543061/animalInfoSrvc/animalInfo', {
     // 서비스키
     'serviceKey': serviceKey,
     // 동물 등록 번호

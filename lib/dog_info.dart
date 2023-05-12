@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mgmg_front/http.dart';
+import 'package:to_gather_together/http/http.dart';
 
 class GetDogInfoPage extends StatelessWidget {
   const GetDogInfoPage({super.key});
