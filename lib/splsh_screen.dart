@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:to_gather_together/login_page.dart';
 import 'package:to_gather_together/http/tgt_login.dart';
+import 'package:to_gather_together/main_page.dart';
 
 // 어플 시작 시 첫 로딩 화면(인트로 화면)
 // 로고, 어플 이름
@@ -18,8 +19,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   static final storage = FlutterSecureStorage();
-  String refreshToken = '';
   String accessToken = '';
+  String refreshToken = '';
   bool isLogin = false;
   bool isLoginError = false;
   final String imageLogo = 'assets/images/togather_logo.png';
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       }
       if (isLogin) {
         // 로그인에 성공하게되면 메인화면
-        // Navigator.push(context, MaterialPageRoute(builder: ((context) => MainPage()))
+        Navigator.push(context, MaterialPageRoute(builder: ((context) => MainPage())));
         print("메인화면입니다!");
       } else {
         // 토큰이 비어있거나 로그인 실패 시 소셜 로그인 화면
