@@ -1,5 +1,5 @@
 import 'dart:async';
-// import 'dart:convert';
+import 'dart:convert';
 // import 'dart:io';
 import 'package:http/http.dart' as http;
 
@@ -36,7 +36,8 @@ Future<dynamic> getWeatherReq() async {
   return null;
 }
 
-Future<dynamic> getAnimalInfoReq(String regNo, String ownerName, String ownerBirth) async {
+Future<dynamic> getAnimalInfoReq(
+    String regNo, String ownerName, String ownerBirth) async {
   String serviceKey =
       'YA+ukx3XZMaIWy4wjnEJIdCj94eQtJdQIjz4SO95oT1ScO8eyBJVQIxvZZvBf07rQPMIsVeT1knarShG9t0pTA==';
   var uri = Uri.http('apis.data.go.kr', '1543061/animalInfoSrvc/animalInfo', {
@@ -47,20 +48,22 @@ Future<dynamic> getAnimalInfoReq(String regNo, String ownerName, String ownerBir
     // 또는 RFID 코드
     // 'rfid_cd': '',
     // 소유자 이름
-    'owner_nm': ownerName,
+    'owner_nm': ownerName.isEmpty ? null : ownerName,
     // 또는 소유자 생년월일
-    'owner_birth': ownerBirth,
+    'owner_birth': ownerBirth.isEmpty ? null : ownerBirth,
     // 응답형태 (XML / JSON)
     '_type': 'json'
   });
-  print(uri);
+  // print(uri);
 
   var response = await http.get(uri);
   // 동물 등록 조회 성공 시
   print('status code : ${response.statusCode}');
   if (response.statusCode == 200) {
     print('response.body : ${response.body}');
-    return response.body;
+    var body = json.decode(response.body);
+    print('response[\'body\'] : ${body['response']['body']}');
+    return body['response']['body'];
   }
 
   return null;

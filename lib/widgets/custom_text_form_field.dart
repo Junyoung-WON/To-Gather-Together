@@ -27,45 +27,49 @@ class CustomTextFormField extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: EdgeInsets.only(bottom: 8),
                 child: Text(
                   label,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700
                   ),
                 ),
               ),
             ],
           ),
-          TextFormField(
-            onSaved: onSaved,
-            validator: validator,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(
+          SizedBox(
+            height: 50,
+            child: TextFormField(
+              textAlignVertical: TextAlignVertical(y: 0.8),
+              onSaved: onSaved,
+              validator: validator,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide(
+                    color: Colors.black45,
+                    width: 1.5,
+                    strokeAlign: BorderSide.strokeAlignCenter
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide(
+                    color: Colors.amberAccent,
+                    width: 2,
+                    strokeAlign: BorderSide.strokeAlignCenter
+                  ),
+                ),
+                hintText: hintText,
+                hintStyle: TextStyle(
                   color: Colors.black45,
-                  width: 1.5,
-                  strokeAlign: BorderSide.strokeAlignCenter
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(
-                  color: Colors.amberAccent,
-                  width: 2,
-                  strokeAlign: BorderSide.strokeAlignCenter
-                ),
-              ),
-              hintText: hintText,
-              hintStyle: TextStyle(
-                color: Colors.black45,
-              ),
+              textInputAction: textInputAction,
+              focusNode: focusNode,
+              onFieldSubmitted: onFieldSubmitted,
             ),
-            textInputAction: textInputAction,
-            focusNode: focusNode,
-            onFieldSubmitted: onFieldSubmitted,
           )
         ],
       ),
