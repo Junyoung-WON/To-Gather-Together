@@ -36,7 +36,7 @@ Future<dynamic> getWeatherReq() async {
   return null;
 }
 
-Future<dynamic> getAnimalInfoReq(String regNo, String ownerName) async {
+Future<dynamic> getAnimalInfoReq(String regNo, String ownerName, String ownerBirth) async {
   String serviceKey =
       'YA+ukx3XZMaIWy4wjnEJIdCj94eQtJdQIjz4SO95oT1ScO8eyBJVQIxvZZvBf07rQPMIsVeT1knarShG9t0pTA==';
   var uri = Uri.http('apis.data.go.kr', '1543061/animalInfoSrvc/animalInfo', {
@@ -49,7 +49,7 @@ Future<dynamic> getAnimalInfoReq(String regNo, String ownerName) async {
     // 소유자 이름
     'owner_nm': ownerName,
     // 또는 소유자 생년월일
-    // 'owner_birth': '',
+    'owner_birth': ownerBirth,
     // 응답형태 (XML / JSON)
     '_type': 'json'
   });

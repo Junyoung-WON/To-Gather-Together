@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:to_gather_together/splsh_screen.dart';
+import 'package:to_gather_together/pages/dog_info_page.dart';
+import 'package:to_gather_together/pages/splsh_screen.dart';
 
 void main() {
   KakaoSdk.init(
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '투개더',
-      home: const SplashScreen(),
+      home: GetDogInfoPage(),
+      // home: SplashScreen(),
     );
   }
 }

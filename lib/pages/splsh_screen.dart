@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:to_gather_together/login_page.dart';
+import 'package:to_gather_together/pages/login_page.dart';
 import 'package:to_gather_together/http/tgt_login.dart';
-import 'package:to_gather_together/main_page.dart';
+import 'package:to_gather_together/pages/main_page.dart';
 
 // 어플 시작 시 첫 로딩 화면(인트로 화면)
 // 로고, 어플 이름
@@ -19,8 +19,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   static final storage = FlutterSecureStorage();
-  String accessToken = '';
-  String refreshToken = '';
+  String? accessToken = '';
+  String? refreshToken = '';
   bool isLogin = false;
   bool isLoginError = false;
   final String imageLogo = 'assets/images/togather_logo.png';
@@ -52,15 +52,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _tgtLogin() async {
     // 투개더 액세스, 리프레시 토큰을 SecureStorage에서 불러옴
-    accessToken = (await storage.read(key: 'access'))!;
-    refreshToken = (await storage.read(key: 'refresh'))!;
+    accessToken = (await storage.read(key: 'access'));
+    refreshToken = (await storage.read(key: 'refresh'));
     // print("access token from storage : $accessToken");
     // print(accessToken.runtimeType);
     // print("refresh token from storage : $refreshToken");
     // print(refreshToken.runtimeType);
 
     // 내부 저장소에 access token이 없는 경우 -> 새로운 사용자
-    if (accessToken.isEmpty) {
+    if (accessToken == null || accessToken!.isEmpty) {
       // 로그인 페이지로 이동
       print("로그인 토큰이 존재하지 않습니다. 잠시 후 로그인 페이지로 이동합니다.");
       setState(() {
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // 내부 저장소에 access token이 있는 경우 -> 기존 사용자
     else {
       // 토큰으로 로그인
-      if (await loginWithToken(accessToken)) {
+      if (await loginWithToken(accessToken!)) {
         // 로그인 성공하면 메인페이지로 이동
         print("로그인 토큰으로 로그인에 성공하였습니다. 잠시 후 메인페이지로 이동합니다.");
         setState(() {
@@ -79,11 +79,11 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         // 액세스 토큰 만료, 리프레시 토큰으로 새로운 토큰 받기
         print("액세스 토큰이 만료되어 리프레시 토큰으로 새로운 액세스 토큰 발급");
-        accessToken = await getAccessToken(refreshToken);
+        accessToken = await getAccessToken(refreshToken!);
 
-        if (accessToken.isNotEmpty) {
+        if (accessToken!.isNotEmpty) {
           await storage.write(key: 'access', value: accessToken);
-          if (await loginWithToken(accessToken)) {
+          if (await loginWithToken(accessToken!)) {
             print("로그인 토큰으로 로그인에 성공하였습니다. 잠시 후 메인페이지로 이동합니다.");
             setState(() {
               isLogin = true;

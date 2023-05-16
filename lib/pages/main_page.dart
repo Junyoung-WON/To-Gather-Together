@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_gather_together/bottom_nav.dart';
+import 'package:to_gather_together/widgets/bottom_nav.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

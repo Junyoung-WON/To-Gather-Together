@@ -3,8 +3,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'http/social_login.dart';
-import 'http/tgt_login.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
+import '../http/social_login.dart';
+import '../http/tgt_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -113,8 +114,9 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Expanded(
                         child: ElevatedButton.icon(
-                          onPressed: () async {
+                          onPressed: () {
                             // 네이버 로그인 동작 : 네이버 로그인 완료 후 받은 accessToken을 서비스 서버로 전달
+                            signInWithNaver();
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFF06BD34)),
@@ -155,7 +157,9 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FlutterNaverLogin.logOutAndDeleteToken();
+                  },
                   child: Text("이메일로 로그인"),
                 ),
               ],
