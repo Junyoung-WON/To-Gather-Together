@@ -34,13 +34,14 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     // 2초 후 화면이동
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(milliseconds: 2500), () {
       if (isLoginError) {
         exit(0);
       }
       if (isLogin) {
         // 로그인에 성공하게되면 메인화면
-        Navigator.push(context, MaterialPageRoute(builder: ((context) => MainPage())));
+        Navigator.push(
+            context, MaterialPageRoute(builder: ((context) => MainPage())));
         print("메인화면입니다!");
       } else {
         // 토큰이 비어있거나 로그인 실패 시 소셜 로그인 화면
@@ -52,12 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _tgtLogin() async {
     // 투개더 액세스, 리프레시 토큰을 SecureStorage에서 불러옴
+    // await storage.deleteAll();
     accessToken = (await storage.read(key: 'access'));
     refreshToken = (await storage.read(key: 'refresh'));
-    // print("access token from storage : $accessToken");
-    // print(accessToken.runtimeType);
-    // print("refresh token from storage : $refreshToken");
-    // print(refreshToken.runtimeType);
 
     // 내부 저장소에 access token이 없는 경우 -> 새로운 사용자
     if (accessToken == null || accessToken!.isEmpty) {
@@ -106,9 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(
               width: 150,
               child: Image.asset(

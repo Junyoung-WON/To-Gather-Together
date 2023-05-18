@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
+import 'package:to_gather_together/pages/main_page.dart';
 import '../http/social_login.dart';
 import '../http/tgt_login.dart';
 
@@ -70,9 +71,11 @@ class _LoginPageState extends State<LoginPage> {
                             await storage.write(
                                 key: 'refresh', value: refreshToken);
                             if (await loginWithToken(accessToken)) {
-                              print("메인 페이지입니다!");
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: MainPage()));
+                              // print("메인 페이지입니다!");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: ((context) => MainPage()))
+                                );
                             }
                           },
                           child: Image.asset(
