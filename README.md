@@ -1,16 +1,14 @@
-# mgmg_front
+# To Gather Together
 
-A new Flutter project.
+반려견 산책로 공유 서비스
 
-## Getting Started
+## Teams
 
-This project is a starting point for a Flutter application.
+dendrog
+jjaeggi
+jamongHeo
+Junyoung-WON
 
-A few resources to get you started if this is your first Flutter project:
+## Work Process
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://jjaegii.notion.site/632ffb6fbacd4f3db0ab762dc3ad22af?pvs=4
